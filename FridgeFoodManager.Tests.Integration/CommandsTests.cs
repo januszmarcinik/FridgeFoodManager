@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -22,6 +23,13 @@ namespace FridgeFoodManager.Tests.Integration
 
             var content = await result.Content.ReadAsStringAsync();
             content.Should().BeEquivalentTo("Ok");
+        }
+
+        [Fact]
+        public async Task GET_CommandThatDoesNotExist_ShouldReturnNotFound()
+        {
+            var result = await _client.GetAsync("api/commands/some-undefined-command");
+            result.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
     }
 }

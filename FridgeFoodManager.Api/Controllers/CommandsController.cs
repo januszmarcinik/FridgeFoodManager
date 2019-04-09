@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FridgeFoodManager.Api.Commands;
+using FridgeFoodManager.Api.Commands.AddProduct;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FridgeFoodManager.Api.Controllers
 {
@@ -9,5 +11,9 @@ namespace FridgeFoodManager.Api.Controllers
         [HttpGet("test")]
         public IActionResult Test()
             => Ok("Ok");
+
+        [HttpGet("add-product")]
+        public IActionResult AddProduct()
+            => Ok(CommandSchema.FromCommand<AddProductCommand>());
     }
 }
