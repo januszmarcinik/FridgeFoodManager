@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FridgeFoodManager.Api.Domain;
+using FridgeFoodManager.Api.Infrastructure;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +19,9 @@ namespace FridgeFoodManager.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<EfContext>();
+            services.AddScoped<IProductsRepository, ProductsRepository>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
