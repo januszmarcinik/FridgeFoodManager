@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using FridgeFoodManager.Api;
 using FridgeFoodManager.Api.Commands.AddProduct;
-using FridgeFoodManager.Tests.Integration.Contracts;
-using Microsoft.AspNetCore.Mvc.Formatters;
+using FridgeFoodManager.Common;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -35,24 +32,9 @@ namespace FridgeFoodManager.Tests.Integration
 
             schema.Name.Should().BeEquivalentTo("AddProductCommand");
             schema.Properties.Should().BeEquivalentTo(
-                new CommandProperty
-                {
-                    Name = "Name",
-                    PropertyType = CommandPropertyType.String,
-                    IsRequired = true
-                },
-                new CommandProperty
-                {
-                    Name = "ExpirationDate",
-                    PropertyType = CommandPropertyType.Date,
-                    IsRequired = true
-                },
-                new CommandProperty
-                {
-                    Name = "MaxDaysAfterOpening",
-                    PropertyType = CommandPropertyType.Int,
-                    IsRequired = true
-                }
+                new CommandProperty("Name", CommandPropertyType.String, true),
+                new CommandProperty("ExpirationDate", CommandPropertyType.Date, true),
+                new CommandProperty("MaxDaysAfterOpening", CommandPropertyType.Int, true)
             );
         }
 

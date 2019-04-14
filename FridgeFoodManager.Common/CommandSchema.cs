@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
-namespace FridgeFoodManager.Api.Commands
+namespace FridgeFoodManager.Common
 {
     public class CommandSchema
     {
+        [JsonConstructor]
         public CommandSchema(string name, IEnumerable<CommandProperty> properties)
         {
             Name = name;

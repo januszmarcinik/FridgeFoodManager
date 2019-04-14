@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using FridgeFoodManager.Api;
 using FridgeFoodManager.Api.Commands.AddProduct;
+using FridgeFoodManager.Common;
 using Xunit;
 
 namespace FridgeFoodManager.Tests.Unit

@@ -1,4 +1,5 @@
 ﻿using System;
+using FridgeFoodManager.Common;
 
 namespace FridgeFoodManager.Api.Commands.AddProduct
 {

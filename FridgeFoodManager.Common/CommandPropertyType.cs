@@ -1,4 +1,4 @@
-﻿namespace FridgeFoodManager.Api.Commands
+﻿namespace FridgeFoodManager.Common
 {
     public enum CommandPropertyType
     {

@@ -1,4 +1,4 @@
-﻿namespace FridgeFoodManager.Api
+﻿namespace FridgeFoodManager.Common
 {
     public class Result
     {

@@ -1,6 +1,7 @@
 ﻿using FridgeFoodManager.Api.Commands;
 using FridgeFoodManager.Api.Commands.AddProduct;
 using FridgeFoodManager.Api.Domain;
+using FridgeFoodManager.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FridgeFoodManager.Api.Controllers

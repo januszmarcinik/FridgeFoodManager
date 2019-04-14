@@ -1,9 +1,11 @@
 ﻿using System;
+using Newtonsoft.Json;
 
-namespace FridgeFoodManager.Api.Commands
+namespace FridgeFoodManager.Common
 {
     public class CommandProperty
     {
+        [JsonConstructor]
         public CommandProperty(string name, CommandPropertyType propertyType, bool isRequired)
         {
             Name = name;

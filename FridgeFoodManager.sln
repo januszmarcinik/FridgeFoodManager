@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridgeFoodManager.Tests.Unit", "FridgeFoodManager.Tests.Unit\FridgeFoodManager.Tests.Unit.csproj", "{ED13369A-098C-431A-8CF2-D8DBA5A6018A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FridgeFoodManager.Tests.Unit", "FridgeFoodManager.Tests.Unit\FridgeFoodManager.Tests.Unit.csproj", "{ED13369A-098C-431A-8CF2-D8DBA5A6018A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridgeFoodManager.Tests.Integration", "FridgeFoodManager.Tests.Integration\FridgeFoodManager.Tests.Integration.csproj", "{CFEA6D59-8713-4838-9F08-53F4FD22E15D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FridgeFoodManager.Tests.Integration", "FridgeFoodManager.Tests.Integration\FridgeFoodManager.Tests.Integration.csproj", "{CFEA6D59-8713-4838-9F08-53F4FD22E15D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridgeFoodManager.Api", "FridgeFoodManager.Api\FridgeFoodManager.Api.csproj", "{D30704D3-3024-4AC8-A5B5-EEC940B51811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FridgeFoodManager.Api", "FridgeFoodManager.Api\FridgeFoodManager.Api.csproj", "{D30704D3-3024-4AC8-A5B5-EEC940B51811}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FridgeFoodManager.App", "FridgeFoodManager.App\FridgeFoodManager.App.csproj", "{1303C302-1453-48B3-AE68-90D587A09E8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FridgeFoodManager.Common", "FridgeFoodManager.Common\FridgeFoodManager.Common.csproj", "{8559B167-9AA2-494F-BCAA-3322F97D6CDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1303C302-1453-48B3-AE68-90D587A09E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1303C302-1453-48B3-AE68-90D587A09E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1303C302-1453-48B3-AE68-90D587A09E8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8559B167-9AA2-494F-BCAA-3322F97D6CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8559B167-9AA2-494F-BCAA-3322F97D6CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8559B167-9AA2-494F-BCAA-3322F97D6CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8559B167-9AA2-494F-BCAA-3322F97D6CDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
