@@ -1,5 +1,4 @@
-﻿using System;
-using FridgeFoodManager.Api.Domain;
+﻿using FridgeFoodManager.Api.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace FridgeFoodManager.Api.Infrastructure
@@ -8,9 +7,8 @@ namespace FridgeFoodManager.Api.Infrastructure
     {
         public DbSet<Product> Products { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public EfContext(DbContextOptions options) : base(options)
         {
-            optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
         }
     }
 }

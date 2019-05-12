@@ -1,5 +1,8 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Text;
+using FridgeFoodManager.Common;
 using Newtonsoft.Json;
 
 namespace FridgeFoodManager.App
@@ -14,20 +17,49 @@ namespace FridgeFoodManager.App
             _httpClient = new HttpClient();
         }
 
-        public T Get<T>(string url)
+        public CommandSchema GetCommandSchema(string url)
         {
             var result = _httpClient.GetAsync($"{ApiUrl}/{url}").GetAwaiter().GetResult();
-            result.EnsureSuccessStatusCode();
+            if (result.IsSuccessStatusCode)
+            {
+                var content = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                return JsonConvert.DeserializeObject<CommandSchema>(content);
+            }
 
-            var content = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            return JsonConvert.DeserializeObject<T>(content);
+            if (result.StatusCode == HttpStatusCode.NotFound)
+            {
+                throw new NullReferenceException("Given command schema was not found.");
+            }
+
+            throw new Exception(result.ReasonPhrase);
+        }
+
+        public QueryResultSchema GetQueryResultSchema(string url)
+        {
+            var result = _httpClient.GetAsync($"{ApiUrl}/{url}").GetAwaiter().GetResult();
+            if (result.IsSuccessStatusCode)
+            {
+                var content = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                return JsonConvert.DeserializeObject<QueryResultSchema>(content);
+            }
+
+            if (result.StatusCode == HttpStatusCode.NotFound)
+            {
+                throw new NullReferenceException("Given query result schema was not found.");
+            }
+
+            throw new Exception(result.ReasonPhrase);
         }
 
         public void Post<T>(string url, T model)
         {
             var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
             var result = _httpClient.PostAsync($"{ApiUrl}/{url}", content).GetAwaiter().GetResult();
-            result.EnsureSuccessStatusCode();
+            if (!result.IsSuccessStatusCode)
+            {
+                var error = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                throw new Exception(error);
+            }
         }
     }
 }
