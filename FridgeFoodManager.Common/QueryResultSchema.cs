@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -40,13 +41,23 @@ namespace FridgeFoodManager.Common
 
                     var enumerable = property.GetValue(queryResult) as IEnumerable<object>;
                     var rows = enumerable
-                        .Select(obj => genericTypeProperties.Select(x => x.GetValue(obj).ToString()).ToArray())
+                        .Select(obj => genericTypeProperties.Select(x => GetStringValueFrom(x.GetValue(obj))).ToArray())
                         .ToArray();
 
                     return new QueryResultList(headers, rows);
                 });
 
             return new QueryResultSchema(ordinaryProperties, enumerableProperties);
+        }
+
+        private static string GetStringValueFrom(object value)
+        {
+            switch (value)
+            {
+                case DateTime date: return date.ToShortDateString();
+                case bool logic: return logic ? "Yes" : "No";
+                default: return value.ToString();
+            }
         }
     }
 }

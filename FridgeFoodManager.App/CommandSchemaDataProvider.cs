@@ -40,6 +40,8 @@ namespace FridgeFoodManager.App
                     return GetBoolPropertyValue;
                 case CommandPropertyType.Decimal:
                     return GetDecimalPropertyValue;
+                case CommandPropertyType.Guid:
+                    return GetGuidPropertyValue;
                 default:
                     throw new NotImplementedException();
             }
@@ -95,6 +97,20 @@ namespace FridgeFoodManager.App
         private static JProperty GetDecimalPropertyValue(string propertyName, bool isRequired)
         {
             throw new NotImplementedException();
+        }
+
+        private static JProperty GetGuidPropertyValue(string propertyName, bool isRequired)
+        {
+            Console.Write($"{propertyName}: ");
+            var isConvertSucceed = Guid.TryParse(Console.ReadLine(), out var value);
+
+            if (!isConvertSucceed && isRequired)
+            {
+                Console.WriteLine("Given ID format is not valid.");
+                return GetGuidPropertyValue(propertyName, true);
+            }
+
+            return new JProperty(propertyName, value);
         }
     }
 }

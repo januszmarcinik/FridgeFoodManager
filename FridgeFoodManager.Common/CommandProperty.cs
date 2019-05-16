@@ -28,6 +28,7 @@ namespace FridgeFoodManager.Common
                 case nameof(Boolean): return CommandPropertyType.Bool;
                 case nameof(Decimal): return CommandPropertyType.Decimal;
                 case nameof(String): return CommandPropertyType.String;
+                case nameof(Guid): return CommandPropertyType.Guid;
                 default: throw new ArgumentOutOfRangeException(nameof(type));
             }
         }

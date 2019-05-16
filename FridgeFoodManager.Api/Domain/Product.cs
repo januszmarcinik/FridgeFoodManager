@@ -1,4 +1,5 @@
 ﻿using System;
+using FridgeFoodManager.Common;
 
 namespace FridgeFoodManager.Api.Domain
 {
@@ -11,5 +12,16 @@ namespace FridgeFoodManager.Api.Domain
         public DateTime ExpirationDate { get; set; }
 
         public int MaxDaysAfterOpening { get; set; }
+
+        public DateTime? OpenedAt { get; set; }
+
+        public bool IsSuitableForConsumption
+            => ExpirationDate < SystemTime.Now &&
+               (OpenedAt.HasValue == false || OpenedAt.Value.AddDays(MaxDaysAfterOpening) < SystemTime.Now);
+
+        public void Open()
+        {
+            OpenedAt = SystemTime.Now;
+        }
     }
 }

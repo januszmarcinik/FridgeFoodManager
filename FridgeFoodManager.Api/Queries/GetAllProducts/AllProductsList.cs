@@ -17,12 +17,15 @@ namespace FridgeFoodManager.Api.Queries.GetAllProducts
 
         public class Product
         {
-            public Product(string name, DateTime expirationDate, int maxDaysAfterOpening)
+            public Product(Guid id, string name, DateTime expirationDate, int maxDaysAfterOpening)
             {
+                Id = id;
                 Name = name;
                 ExpirationDate = expirationDate;
                 MaxDaysAfterOpening = maxDaysAfterOpening;
             }
+
+            public Guid Id { get; }
 
             public string Name { get; }
 

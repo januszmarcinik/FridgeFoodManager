@@ -6,6 +6,7 @@
         Date = 2,
         Int = 3,
         Bool = 4,
-        Decimal = 5
+        Decimal = 5,
+        Guid = 6
     }
 }

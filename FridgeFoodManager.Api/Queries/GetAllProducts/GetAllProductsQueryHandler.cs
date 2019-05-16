@@ -16,7 +16,7 @@ namespace FridgeFoodManager.Api.Queries.GetAllProducts
         {
             var products = _productsRepository
                 .GetAll()
-                .Select(p => new AllProductsList.Product(p.Name, p.ExpirationDate, p.MaxDaysAfterOpening))
+                .Select(p => new AllProductsList.Product(p.Id, p.Name, p.ExpirationDate, p.MaxDaysAfterOpening))
                 .ToList();
 
             return new AllProductsList(products.Count, products);

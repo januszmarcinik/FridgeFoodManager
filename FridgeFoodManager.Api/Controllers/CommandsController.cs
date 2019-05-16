@@ -1,5 +1,5 @@
-﻿using FridgeFoodManager.Api.Commands;
-using FridgeFoodManager.Api.Commands.AddProduct;
+﻿using FridgeFoodManager.Api.Commands.AddProduct;
+using FridgeFoodManager.Api.Commands.OpenProduct;
 using FridgeFoodManager.Api.Domain;
 using FridgeFoodManager.Common;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +31,24 @@ namespace FridgeFoodManager.Api.Controllers
             var handler = new AddProductCommandHandler(_productsRepository);
             var result = handler.Handle(command);
 
+            return HandleResult(result);
+        }
+
+        [HttpGet("open-product")]
+        public IActionResult OpenProduct()
+            => Ok(CommandSchema.FromCommand<OpenProductCommand>());
+
+        [HttpPost("open-product")]
+        public IActionResult OpenProduct(OpenProductCommand command)
+        {
+            var handler = new OpenProductCommandHandler(_productsRepository);
+            var result = handler.Handle(command);
+
+            return HandleResult(result);
+        }
+
+        private IActionResult HandleResult(Result result)
+        {
             if (result.IsSuccess)
             {
                 return Accepted();
