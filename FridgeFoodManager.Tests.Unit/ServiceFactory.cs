@@ -1,4 +1,4 @@
-﻿using FridgeFoodManager.Api.Domain;
+﻿using FridgeFoodManager.Domain;
 
 namespace FridgeFoodManager.Tests.Unit
 {

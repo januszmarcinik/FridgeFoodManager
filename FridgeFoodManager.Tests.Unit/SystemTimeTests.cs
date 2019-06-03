@@ -1,7 +1,6 @@
 ﻿using System;
 using FluentAssertions;
-using FridgeFoodManager.Api;
-using FridgeFoodManager.Common;
+using FridgeFoodManager.Domain;
 using Xunit;
 
 namespace FridgeFoodManager.Tests.Unit

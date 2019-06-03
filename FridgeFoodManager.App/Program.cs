@@ -1,13 +1,18 @@
 ﻿using System;
+using FridgeFoodManager.App.Infrastructure;
+using FridgeFoodManager.Domain;
 
 namespace FridgeFoodManager.App
 {
     class Program
     {
-        private static readonly ApiClient ApiClient = new ApiClient();
-
         static void Main(string[] args)
         {
+            var efContext = new EfContext();
+            var productsRepository = new ProductsRepository(efContext);
+            var mediator = new Mediator(productsRepository);
+            var actionsRegistry = new ActionsRegistry(mediator);
+
             while (true)
             {
                 Console.Write("\nCommand: ");
@@ -19,64 +24,20 @@ namespace FridgeFoodManager.App
                     continue;
                 }
 
-                var parts = command.Split(" ");
-                if (parts.Length == 1 && parts[0] == "exit")
+                if (command.ToLower() == "exit")
                 {
                     break;
                 }
-                if (parts.Length != 2)
+
+                try
                 {
-                    WriteError("Please pass two values: [command/query] [name].");
-                    continue;
+                    actionsRegistry.Run(command);
+                    WriteSuccess();
                 }
-
-                var type = parts[0].ToLower();
-                var name = parts[1];
-
-                if (type == "command" || type == "c" || type == "cmd")
+                catch (Exception e)
                 {
-                    HandleCommand(name);
+                    WriteError(e.Message);
                 }
-                else if (type == "query" || type == "q")
-                {
-                    HandleQuery(name);
-                }
-            }
-        }
-
-        private static void HandleCommand(string name)
-        {
-            try
-            {
-                var url = $"commands/{name}";
-                var commandSchema = ApiClient.GetCommandSchema(url);
-
-                var commandSchemaDataProvider = new CommandSchemaDataProvider(commandSchema);
-                var input = commandSchemaDataProvider.StartCreatingJsonContent();
-
-                ApiClient.Post(url, input);
-                WriteSuccess();
-            }
-            catch (Exception e)
-            {
-                WriteError(e.Message);
-            }
-        }
-
-        private static void HandleQuery(string name)
-        {
-            try
-            {
-                var url = $"queries/{name}";
-                var queryResultSchema = ApiClient.GetQueryResultSchema(url);
-
-                var queryResultSchemaDataProvider = new QueryResultSchemaDataProvider(queryResultSchema);
-                queryResultSchemaDataProvider.Write();
-                WriteSuccess();
-            }
-            catch (Exception e)
-            {
-                WriteError(e.Message);
             }
         }
 

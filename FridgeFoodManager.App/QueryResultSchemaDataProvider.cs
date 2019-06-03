@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FridgeFoodManager.Common;
 
 namespace FridgeFoodManager.App
 {
@@ -22,30 +21,51 @@ namespace FridgeFoodManager.App
             }
 
             Console.WriteLine();
-
-            var maxCharactersLength = CountMaxCharactersLength();
             
             foreach (var queryResultList in _queryResultSchema.Lists)
             {
-                var header = GetValuesWithPadding(queryResultList.ColumnNames, maxCharactersLength);
+                var maxCharactersLengths = CountMaxCharactersLengths(queryResultList);
+
+                var header = GetValuesWithPadding(queryResultList.ColumnNames, maxCharactersLengths);
                 Console.WriteLine(header);
 
                 foreach (var rowValues in queryResultList.RowsValues)
                 {
-                    var row = GetValuesWithPadding(rowValues, maxCharactersLength);
+                    var row = GetValuesWithPadding(rowValues, maxCharactersLengths);
                     Console.WriteLine(row);
                 }
             }
         }
 
-        private int CountMaxCharactersLength()
-            => _queryResultSchema.Lists
-                .SelectMany(x => x.ColumnNames)
-                .Concat(_queryResultSchema.Lists.SelectMany(x => x.RowsValues.SelectMany(y => y)))
+        private static int[] CountMaxCharactersLengths(QueryResultList queryResultList)
+        {
+            var maxCharactersLengths = queryResultList
+                .ColumnNames
                 .Select(x => x.Length)
-                .Max();
+                .ToArray();
 
-        private static string GetValuesWithPadding(IEnumerable<string> values, int maxCharactersLength)
-            => string.Join(" ", values.Select(x => x.PadRight(x.Length + maxCharactersLength - x.Length)));
+            foreach (var rowValues in queryResultList.RowsValues)
+            {
+                for (var i = 0; i < maxCharactersLengths.Length; i++)
+                {
+                    if (rowValues[i].Length > maxCharactersLengths[i])
+                    {
+                        maxCharactersLengths[i] = rowValues[i].Length;
+                    }
+                }
+            }
+
+            return maxCharactersLengths;
+        }
+
+        private static string GetValuesWithPadding(string[] values, int[] maxCharactersLengths)
+        {
+            for (var i = 0; i < values.Length; i++)
+            {
+                values[i] = values[i].PadRight(values[i].Length + maxCharactersLengths[i] - values[i].Length);
+            }
+
+            return string.Join("  ", values);
+        }
     }
 }

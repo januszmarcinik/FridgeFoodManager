@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FridgeFoodManager.Api.Domain;
+using FridgeFoodManager.Domain;
 
 namespace FridgeFoodManager.Tests.Unit
 {
