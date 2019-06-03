@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FridgeFoodManager.Domain.Queries.GetAllProducts
+namespace FridgeFoodManager.Domain.Models
 {
-    public class AllProductsList
+    public class ProductsList
     {
-        public AllProductsList(int count, IEnumerable<Product> products)
+        public ProductsList(int count, IEnumerable<Product> products)
         {
             Count = count;
             Products = products;

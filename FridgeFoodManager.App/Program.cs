@@ -10,6 +10,7 @@ namespace FridgeFoodManager.App
         {
             var efContext = new EfContext();
             var productsRepository = new ProductsRepository(efContext);
+            productsRepository.InitializeMockData();
             var mediator = new Mediator(productsRepository);
             var actionsRegistry = new ActionsRegistry(mediator);
 

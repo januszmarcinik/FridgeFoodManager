@@ -1,6 +1,8 @@
-﻿namespace FridgeFoodManager.Domain.Queries.GetAllProducts
+﻿using FridgeFoodManager.Domain.Models;
+
+namespace FridgeFoodManager.Domain.Queries.GetAllProducts
 {
-    public class GetAllProductsQuery : IQuery<AllProductsList>
+    public class GetAllProductsQuery : IQuery<ProductsList>
     {
     }
 }

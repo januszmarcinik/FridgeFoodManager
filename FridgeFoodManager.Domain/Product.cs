@@ -15,8 +15,8 @@ namespace FridgeFoodManager.Domain
         public DateTime? OpenedAt { get; set; }
 
         public bool IsSuitableForConsumption
-            => ExpirationDate < SystemTime.Now &&
-               (OpenedAt.HasValue == false || OpenedAt.Value.AddDays(MaxDaysAfterOpening) < SystemTime.Now);
+            => ExpirationDate > SystemTime.Now &&
+               (OpenedAt.HasValue == false || OpenedAt.Value.AddDays(MaxDaysAfterOpening) > SystemTime.Now);
 
         public void Open()
         {
