@@ -14,8 +14,8 @@ namespace FridgeFoodManager.Tests.Unit
             _products = new List<Product>();
         }
 
-        public IEnumerable<Product> GetAll()
-            => _products;
+        public IQueryable<Product> Query()
+            => _products.AsQueryable();
 
         public Product GetById(Guid id)
             => _products.SingleOrDefault(x => x.Id == id);

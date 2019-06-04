@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace FridgeFoodManager.Domain
 {
     public interface IProductsRepository
     {
-        IEnumerable<Product> GetAll();
+        IQueryable<Product> Query();
 
         Product GetById(Guid id);
 

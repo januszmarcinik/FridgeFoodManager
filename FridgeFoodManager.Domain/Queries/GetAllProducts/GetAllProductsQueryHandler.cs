@@ -15,7 +15,7 @@ namespace FridgeFoodManager.Domain.Queries.GetAllProducts
         public ProductsList Handle(GetAllProductsQuery query)
         {
             var products = _productsRepository
-                .GetAll()
+                .Query()
                 .Select(p => new ProductsList.Product(p.Id, p.Name, p.ExpirationDate, p.MaxDaysAfterOpening))
                 .ToList();
 

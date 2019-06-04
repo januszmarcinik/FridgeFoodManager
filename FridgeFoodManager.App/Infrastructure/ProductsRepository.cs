@@ -14,8 +14,8 @@ namespace FridgeFoodManager.App.Infrastructure
             _context = context;
         }
 
-        public IEnumerable<Product> GetAll()
-            => _context.Products.ToList();
+        public IQueryable<Product> Query()
+            => _context.Products.AsQueryable();
 
         public Product GetById(Guid id)
             => _context.Products.SingleOrDefault(x => x.Id == id);

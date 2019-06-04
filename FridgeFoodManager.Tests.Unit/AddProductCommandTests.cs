@@ -97,12 +97,12 @@ namespace FridgeFoodManager.Tests.Unit
             };
 
             var productsRepository = ServiceFactory.ProductsRepository;
-            productsRepository.GetAll().Count().Should().Be(0);
+            productsRepository.Query().Count().Should().Be(0);
 
             var handler = new AddProductCommandHandler(productsRepository);
             handler.Handle(command);
 
-            productsRepository.GetAll().Count().Should().Be(1);
+            productsRepository.Query().Count().Should().Be(1);
         }
     }
 }

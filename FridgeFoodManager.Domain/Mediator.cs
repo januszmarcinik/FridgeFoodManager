@@ -3,6 +3,7 @@ using FridgeFoodManager.Domain.Commands.AddProduct;
 using FridgeFoodManager.Domain.Commands.OpenProduct;
 using FridgeFoodManager.Domain.Commands.RemoveProduct;
 using FridgeFoodManager.Domain.Queries.GetAllProducts;
+using FridgeFoodManager.Domain.Queries.GetOpenProducts;
 using FridgeFoodManager.Domain.Queries.GetOverdueProducts;
 
 namespace FridgeFoodManager.Domain
@@ -37,6 +38,8 @@ namespace FridgeFoodManager.Domain
             {
                 case GetAllProductsQuery q:
                     return new GetAllProductsQueryHandler(_productsRepository).Handle(q) as T;
+                case GetOpenProductsQuery q:
+                    return new GetOpenProductsQueryHandler(_productsRepository).Handle(q) as T;
                 case GetOverdueProductsQuery q:
                     return new GetOverdueProductsQueryHandler(_productsRepository).Handle(q) as T;
                 default:
