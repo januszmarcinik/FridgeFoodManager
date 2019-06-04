@@ -27,9 +27,14 @@ namespace FridgeFoodManager.Tests.Unit
 
         public void Update(Product product)
         {
+            Remove(product);
+            _products.Add(product);
+        }
+
+        public void Remove(Product product)
+        {
             var oldProduct = GetById(product.Id);
             _products.Remove(oldProduct);
-            _products.Add(product);
         }
     }
 }

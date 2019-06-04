@@ -32,6 +32,12 @@ namespace FridgeFoodManager.App.Infrastructure
             _context.SaveChanges();
         }
 
+        public void Remove(Product product)
+        {
+            _context.Remove(product);
+            _context.SaveChanges();
+        }
+
         internal void InitializeMockData()
         {
             var startDate = SystemTime.Now;

@@ -2,6 +2,7 @@
 using FridgeFoodManager.Domain;
 using FridgeFoodManager.Domain.Commands.AddProduct;
 using FridgeFoodManager.Domain.Commands.OpenProduct;
+using FridgeFoodManager.Domain.Commands.RemoveProduct;
 using FridgeFoodManager.Domain.Queries.GetAllProducts;
 using FridgeFoodManager.Domain.Queries.GetOverdueProducts;
 
@@ -26,6 +27,10 @@ namespace FridgeFoodManager.App
 
                 case "open":
                     RunCommand(new OpenProductCommand());
+                    break;
+
+                case "remove":
+                    RunCommand(new RemoveProductCommand());
                     break;
 
                 case "get-all":

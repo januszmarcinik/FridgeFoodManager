@@ -12,5 +12,7 @@ namespace FridgeFoodManager.Domain
         void Add(Product product);
 
         void Update(Product product);
+
+        void Remove(Product product);
     }
 }

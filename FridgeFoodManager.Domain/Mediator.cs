@@ -1,6 +1,7 @@
 ﻿using System;
 using FridgeFoodManager.Domain.Commands.AddProduct;
 using FridgeFoodManager.Domain.Commands.OpenProduct;
+using FridgeFoodManager.Domain.Commands.RemoveProduct;
 using FridgeFoodManager.Domain.Queries.GetAllProducts;
 using FridgeFoodManager.Domain.Queries.GetOverdueProducts;
 
@@ -23,6 +24,8 @@ namespace FridgeFoodManager.Domain
                     return new AddProductCommandHandler(_productsRepository).Handle(c);
                 case OpenProductCommand c:
                     return new OpenProductCommandHandler(_productsRepository).Handle(c);
+                case RemoveProductCommand c:
+                    return new RemoveProductCommandHandler(_productsRepository).Handle(c);
                 default:
                     throw new Exception("Given command does not exists or it is not registered in mediator.");
             }
