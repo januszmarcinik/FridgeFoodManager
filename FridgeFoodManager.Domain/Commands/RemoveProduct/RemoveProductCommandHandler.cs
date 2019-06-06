@@ -17,7 +17,8 @@
                 return Result.Failure("Product with given ID does not exist.");
             }
 
-            _productsRepository.Remove(product);
+            product.Remove();
+            _productsRepository.Update(product);
 
             return Result.Success();
         }

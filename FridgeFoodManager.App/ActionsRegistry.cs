@@ -6,6 +6,7 @@ using FridgeFoodManager.Domain.Commands.RemoveProduct;
 using FridgeFoodManager.Domain.Queries.GetAllProducts;
 using FridgeFoodManager.Domain.Queries.GetOpenProducts;
 using FridgeFoodManager.Domain.Queries.GetOverdueProducts;
+using FridgeFoodManager.Domain.Queries.Shopping;
 
 namespace FridgeFoodManager.App
 {
@@ -44,6 +45,10 @@ namespace FridgeFoodManager.App
 
                 case "get-overdue":
                     RunQuery(new GetOverdueProductsQuery());
+                    break;
+
+                case "shopping":
+                    RunQuery(new ShoppingQuery());
                     break;
 
                 default:

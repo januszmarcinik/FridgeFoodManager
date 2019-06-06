@@ -14,8 +14,17 @@ namespace FridgeFoodManager.Tests.Unit
             _products = new List<Product>();
         }
 
-        public IQueryable<Product> Query()
-            => _products.AsQueryable();
+        public IQueryable<Product> Query(bool onlyNotRemoved = true)
+        {
+            if (onlyNotRemoved)
+            {
+                return _products
+                    .Where(x => x.RemovedAt.HasValue == false)
+                    .AsQueryable();
+            }
+
+            return _products.AsQueryable();
+        }
 
         public Product GetById(Guid id)
             => _products.SingleOrDefault(x => x.Id == id);

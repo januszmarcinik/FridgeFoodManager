@@ -5,6 +5,7 @@ using FridgeFoodManager.Domain.Commands.RemoveProduct;
 using FridgeFoodManager.Domain.Queries.GetAllProducts;
 using FridgeFoodManager.Domain.Queries.GetOpenProducts;
 using FridgeFoodManager.Domain.Queries.GetOverdueProducts;
+using FridgeFoodManager.Domain.Queries.Shopping;
 
 namespace FridgeFoodManager.Domain
 {
@@ -42,6 +43,8 @@ namespace FridgeFoodManager.Domain
                     return new GetOpenProductsQueryHandler(_productsRepository).Handle(q) as T;
                 case GetOverdueProductsQuery q:
                     return new GetOverdueProductsQueryHandler(_productsRepository).Handle(q) as T;
+                case ShoppingQuery q:
+                    return new ShoppingQueryHandler(_productsRepository).Handle(q) as T;
                 default:
                     throw new Exception("Given query does not exists or it is not registered in mediator.");
             }
